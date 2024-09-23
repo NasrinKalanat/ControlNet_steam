@@ -533,7 +533,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             if self.transform is not None:
                 img_cur = self.transform(
                     img_cur)  # The pixel values of the tensor are of type float32 and range from 0 to 1 (transforms.ToTensor() method includes normalization as part of its functionality, by dividing the pixel values by 255 to rescale them to the range [0, 1]).
-            imgs[i, ...] = img_cur
+            imgs[i] = img_cur
 
             cur_path, url = self.images[id_random][i][0], self.images[id_random][i][1]
             img_cur = self._loadimage(cur_path, url)
@@ -542,11 +542,11 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
                     img_cur)  # The pixel values of the tensor are of type float32 and range from 0 to 1 (transforms.ToTensor() method includes normalization as part of its functionality, by dividing the pixel values by 255 to rescale them to the range [0, 1]).
             imgs_random[i, ...] = img_cur
 
-            t[i, ...] = torch.tensor([self.dates[id][i][0]])
-            lbl[i, ...] = torch.tensor([self.labels[id][i][0]])
-            w[i, ...] = np.array(self.weather[id][i][:])
-            wlbl[i, ...] = np.array(self.weather_label[id][i])
-            ids[i, ...] = self.images[id][i][2]
+            t[i] = torch.tensor([self.dates[id][i][0]])
+            lbl[i] = torch.tensor([self.labels[id][i][0]])
+            w[i] = np.array(self.weather[id][i][:])
+            wlbl[i] = np.array(self.weather_label[id][i])
+            ids[i] = self.images[id][i][2]
 
         #     return imgs.squeeze(), t, torch.from_numpy(self.labels[id].astype(np.float32)), w, torch.from_numpy(ids)
         # w = torch.tensor(w)
