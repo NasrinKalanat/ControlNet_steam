@@ -529,7 +529,6 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         w = np.zeros((self.l_seq + 1, 16), dtype=np.float32)
         wlbl = np.zeros((self.l_seq + 1, self.num_classes), dtype=np.str)
         ids = np.zeros((self.l_seq + 1, 1))
-        print(self.weather_label)
         for i in range(self.l_seq + 1):
             cur_path, url = self.images[id][i][0], self.images[id][i][1]
             img_cur = self._loadimage(cur_path, url)
