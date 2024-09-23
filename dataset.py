@@ -15,6 +15,7 @@ import torch
 from torchvision import transforms
 import joblib
 import json
+import cv2
 
 
 # def download_image(url, file_path, file_name=""):
@@ -66,12 +67,12 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         self.image_size = image_size
         self.path_weather = path_weather
         self.transform = transforms.Compose([
-            transforms.ToPILImage(),
-            # transforms.CenterCrop(340),
-            # transforms.Resize(360, Image.BICUBIC),
-            transforms.Resize((image_size, image_size)),
-            # transforms.Grayscale(),
-            transforms.ToTensor(),
+            # transforms.ToPILImage(),
+            # # transforms.CenterCrop(340),
+            # # transforms.Resize(360, Image.BICUBIC),
+            # transforms.Resize((image_size, image_size)),
+            # # transforms.Grayscale(),
+            # transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
             # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
             # torch.squeeze,
@@ -199,11 +200,15 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         try:
             with open(path, 'rb') as f:
                 img = np.load(path, allow_pickle=True)
+                # Convert the image from BGR to RGB (if necessary)
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                 return img
         except:
             img = download_image(url, path)
             with open(path, 'rb') as f:
                 img = np.load(path, allow_pickle=True)
+                # Convert the image from BGR to RGB (if necessary)
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                 return img
 
     def denormalize(self, pred):
