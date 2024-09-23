@@ -82,7 +82,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
 
         predefined_classes = ["Sunny/Clear", "Cloudy/Overcast", "Rainy", "Snowy", "Foggy/Misty", "Windy",
                               "Stormy/Severe", "Hot/Heatwave", "Cold/Cold Wave", "Mixed/Variable"]
-        self.num_classes = len(predefined_classes)
+        self.num_classes = 1
 
         self.images, self.labels, self.dates, self.weather, self.weather_label = [], [], [], [], []
         self.boundries = []
