@@ -1,8 +1,8 @@
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from dataset import ImageNetVidDataset
-from .cldm.logger import ImageLogger
-from .cldm.model import create_model, load_state_dict
+from ..cldm.logger import ImageLogger
+from ..cldm.model import create_model, load_state_dict
 import argparse
 
 # Configs
