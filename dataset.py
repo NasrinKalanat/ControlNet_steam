@@ -527,7 +527,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         t = torch.zeros((self.l_seq + 1, 1), dtype=torch.float32)
         lbl = torch.zeros((self.l_seq + 1, 1), dtype=torch.float32)
         w = np.zeros((self.l_seq + 1, 16), dtype=np.float32)
-        wlbl = np.zeros((self.l_seq + 1, self.num_classes), dtype=np.str)
+        # wlbl = np.zeros((self.l_seq + 1, self.num_classes), dtype=np.str)
+        wlbl = []
         ids = np.zeros((self.l_seq + 1, 1))
         for i in range(self.l_seq + 1):
             cur_path, url = self.images[id][i][0], self.images[id][i][1]
@@ -549,7 +550,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             w[i] = np.array(self.weather[id][i][:])
             weather_cond = [item.split('/')[0] for item in self.weather_label[id][i][:]]
             weather_cond = ' and '.join(weather_cond)
-            wlbl[i] = np.array([weather_cond])
+            wlbl.append([weather_cond])
             ids[i] = self.images[id][i][2]
 
         print(wlbl)
