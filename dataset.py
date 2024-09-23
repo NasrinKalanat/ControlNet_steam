@@ -521,8 +521,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         random_range = np.concatenate(
             (np.arange(0, self.boundries[area_id][0]), np.arange(self.boundries[area_id][1] + 1, len(self))))
         id_random = np.random.choice(random_range)
-        imgs = np.zeros((self.l_seq + 1, 3, self.image_size, self.image_size), dtype=np.float32)
-        imgs_random = np.zeros((self.l_seq + 1, 3, self.image_size, self.image_size), dtype=np.float32)
+        imgs = np.zeros((self.l_seq + 1, self.image_size, self.image_size, 3), dtype=np.float32)
+        imgs_random = np.zeros((self.l_seq + 1, self.image_size, self.image_size, 3), dtype=np.float32)
         # imgs=torch.zeros((self.l_seq,3,360,360),dtype=torch.float32)
         t = torch.zeros((self.l_seq + 1, 1), dtype=torch.float32)
         lbl = torch.zeros((self.l_seq + 1, 1), dtype=torch.float32)
