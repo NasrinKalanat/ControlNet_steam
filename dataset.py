@@ -562,7 +562,6 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         label_nxt = lbl[1:]
         weather_nxt = w[1:]
         wlabel_nxt = wlbl[1:]
-        print(wlabel_nxt)
         ids_nxt = ids[1:]
 
         images_X = imgs[:-1]
@@ -572,7 +571,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         wlabel_X = wlbl[:-1]
         ids_X = ids[:-1]
         wlabel_nxt = np.array(wlabel_nxt)
-        print(wlabel_nxt.shape)
+        print(wlabel_nxt, wlabel_nxt.shape)
 
         if self.len_seq == 1:
             return dict(jpg = images_nxt.squeeze(0), txt = wlabel_nxt.squeeze(0), hint = images_X.squeeze(0))
