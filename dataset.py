@@ -549,7 +549,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             w[i] = np.array(self.weather[id][i][:])
             print(self.weather_label[id][i])
             # print(np.array(self.weather_label[id][i]))
-            wlbl[i] = np.array([condition.replace('/', ' or ') for condition in self.weather_label[id][i]])
+            weather_conditions = [condition.replace('/', ' or ') for condition in self.weather_label[id][i]]
+            wlbl[i] = ' and '.join(weather_conditions)
             ids[i] = self.images[id][i][2]
 
         #     return imgs.squeeze(), t, torch.from_numpy(self.labels[id].astype(np.float32)), w, torch.from_numpy(ids)
