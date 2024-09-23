@@ -557,8 +557,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         wlabel_X = wlbl[:-1]
         ids_X = ids[:-1]
         if self.l_seq == 1:
-            return {"img": images_nxt.squeeze(0), "hint": images_X.squeeze(0), "txt": wlabel_nxt.squeeze(0)}
-        return {"jpg": images_nxt, "hint": images_X, "txt": wlabel_nxt}
+            return {"jpg": images_nxt.squeeze(0), "txt": wlabel_nxt.squeeze(0), "hint": images_X.squeeze(0)}
+        return {"jpg": images_nxt, "txt": wlabel_nxt, "hint": images_X}
         #     return {"img": images_nxt.squeeze(0),
         #             "mixed": {"cond": (images_X.squeeze(0), label_X.reshape(self.batch_size, self.len_seq, -1).squeeze(0), weather_X.reshape(self.batch_size, self.len_seq, -1).squeeze(0),
         #                                t_nxt.squeeze(0), label_nxt.squeeze(0), wlabel_nxt.squeeze(0), ids_nxt),
