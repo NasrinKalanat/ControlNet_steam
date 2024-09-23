@@ -5,12 +5,8 @@ from cldm.logger import ImageLogger
 from cldm.model import create_model, load_state_dict
 import argparse
 
-parser = argparse.ArgumentParser(prog='ControlNet')
-parser.add_argument('ckpt_path', default=None)
-args = parser.parse_args()
-
 # Configs
-resume_path = args.ckpt_path
+resume_path = 'models/v1-5-pruned_controlnet.ckpt'
 batch_size = 4
 logger_freq = 300
 learning_rate = 1e-5
