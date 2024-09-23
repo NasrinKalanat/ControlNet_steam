@@ -203,7 +203,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             with open(path, 'rb') as f:
                 img = np.load(path, allow_pickle=True)
                 # Convert the image from BGR to RGB (if necessary)
-                img = cv2.resize(img, self.image_size, interpolation=cv2.INTER_CUBIC)
+                img = cv2.resize(img, (self.image_size, self.image_size), interpolation=cv2.INTER_CUBIC)
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                 img = (img.astype(np.float32) / 127.5) - 1.0
                 return img
@@ -212,7 +212,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             with open(path, 'rb') as f:
                 img = np.load(path, allow_pickle=True)
                 # Convert the image from BGR to RGB (if necessary)
-                img = cv2.resize(img, self.image_size, interpolation=cv2.INTER_CUBIC)
+                img = cv2.resize(img, (self.image_size, self.image_size), interpolation=cv2.INTER_CUBIC)
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                 img = (img.astype(np.float32) / 127.5) - 1.0
                 return img
