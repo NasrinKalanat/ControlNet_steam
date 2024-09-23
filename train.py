@@ -24,7 +24,9 @@ model.only_mid_control = only_mid_control
 
 # Misc
 dataset = ImageNetVidDataset(path= "/data/nak168/spatial_temporal/stream_img/data/fpe-westbrook/", path_weather= "/data/nak168/spatial_temporal/stream_img/data/", len_seq=1)
+print(len(dataset))
 dataloader = DataLoader(dataset, num_workers=0, batch_size=batch_size, shuffle=True)
+print(len(dataloader))
 logger = ImageLogger(batch_frequency=logger_freq)
 trainer = pl.Trainer(accelerator="gpu", precision=32, callbacks=[logger], devices=[1])
 
