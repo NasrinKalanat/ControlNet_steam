@@ -301,7 +301,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
                     "Weather Classified Categories"]
                 l.append([t_jdata, w_jdata])
         l_df = pd.DataFrame(data=l, columns=["date_tmp", "weather_label"])
-        l_df["weather_label"] = l_df["weather_label"].str.replace('/', ' and ')
+        # l_df["weather_label"] = l_df["weather_label"].str.replace('/', ' and ')
         l_df["date_tmp"] = pd.to_datetime(l_df["date_tmp"]).dt.strftime('%Y-%m-%d')
         # print(len(weatherfile),len(l_df))
         weatherfile = weatherfile.merge(l_df, on=["date_tmp"])
