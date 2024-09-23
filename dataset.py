@@ -570,7 +570,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         weather_X = w[:-1]
         wlabel_X = wlbl[:-1]
         ids_X = ids[:-1]
-        wlabel_nxt = np.array(wlabel_nxt)
+        wlabel_nxt = np.array(wlabel_nxt, dtype='<U6')
+        wlabel_nxt = wlabel_nxt.tolist()
         print(wlabel_nxt, wlabel_nxt.shape)
 
         if self.len_seq == 1:
