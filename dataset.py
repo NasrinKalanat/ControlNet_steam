@@ -549,8 +549,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             ids[i, ...] = self.images[id][i][2]
 
         #     return imgs.squeeze(), t, torch.from_numpy(self.labels[id].astype(np.float32)), w, torch.from_numpy(ids)
-        w = torch.tensor(w)
-        wlbl = torch.tensor(wlbl)
+        # w = torch.tensor(w)
+        # wlbl = torch.tensor(wlbl)
         images_nxt = imgs[1:]
         images_random = imgs_random[1:]
         t_nxt = t[1:]
