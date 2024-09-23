@@ -66,18 +66,20 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         self.l_seq = batch_size * len_seq
         self.image_size = image_size
         self.path_weather = path_weather
-        self.transform = transforms.Compose([
-            # transforms.ToPILImage(),
-            # # transforms.CenterCrop(340),
-            # # transforms.Resize(360, Image.BICUBIC),
-            # transforms.Resize((image_size, image_size)),
-            # # transforms.Grayscale(),
-            # transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-            # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-            # torch.squeeze,
-            # np.array
-        ])
+        # self.transform = transforms.Compose([
+        #     transforms.ToPILImage(),
+        #     # transforms.CenterCrop(340),
+        #     # transforms.Resize(360, Image.BICUBIC),
+        #     transforms.Resize((image_size, image_size)),
+        #     # transforms.Grayscale(),
+        #     transforms.ToTensor(),
+        #     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+        #     # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        #     # torch.squeeze,
+        #     # np.array
+        # ])
+        self.transform = torch.nn.Identity()
+
         predefined_classes = ["Sunny/Clear", "Cloudy/Overcast", "Rainy", "Snowy", "Foggy/Misty", "Windy",
                               "Stormy/Severe", "Hot/Heatwave", "Cold/Cold Wave", "Mixed/Variable"]
         self.num_classes = len(predefined_classes)
@@ -202,6 +204,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
                 img = np.load(path, allow_pickle=True)
                 # Convert the image from BGR to RGB (if necessary)
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                img = (img.astype(np.float32) / 127.5) - 1.0
                 return img
         except:
             img = download_image(url, path)
@@ -209,6 +212,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
                 img = np.load(path, allow_pickle=True)
                 # Convert the image from BGR to RGB (if necessary)
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                img = (img.astype(np.float32) / 127.5) - 1.0
                 return img
 
     def denormalize(self, pred):
