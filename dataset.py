@@ -548,6 +548,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
             lbl[i] = torch.tensor([self.labels[id][i][0]])
             w[i] = np.array(self.weather[id][i][:])
             print(self.weather_label[id][i])
+            print("***********************")
             print(np.array(self.weather_label[id][i]))
             wlbl[i] = np.array(self.weather_label[id][i])
             ids[i] = self.images[id][i][2]
