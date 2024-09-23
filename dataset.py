@@ -57,7 +57,7 @@ def download_image(url, file_path, file_name=""):
 
 class ImageNetVidDataset(torch.utils.data.Dataset):
 
-    def __init__(self, image_size=256, batch_size=2, len_seq=8, path="", path_weather="", path_scaler="",
+    def __init__(self, image_size=256, batch_size=1, len_seq=8, path="", path_weather="", path_scaler="",
                  normalize_flag=True, phase="train", transform=None, mask_frac=0):
 
         self.phase = phase
