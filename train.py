@@ -8,7 +8,7 @@ import argparse
 # Configs
 resume_path = 'models/v1-5-pruned_controlnet.ckpt'
 batch_size = 4
-logger_freq = 1
+logger_freq = 100
 learning_rate = 1e-5
 sd_locked = True
 only_mid_control = False
@@ -26,7 +26,7 @@ model.only_mid_control = only_mid_control
 dataset = ImageNetVidDataset(path= "/data/nak168/spatial_temporal/stream_img/data/fpe-westbrook/", path_weather= "/data/nak168/spatial_temporal/stream_img/data/", len_seq=1)
 dataloader = DataLoader(dataset, num_workers=0, batch_size=batch_size, shuffle=True)
 logger = ImageLogger(batch_frequency=logger_freq)
-trainer = pl.Trainer(accelerator="gpu", precision=32, callbacks=[logger], devices=[1], max_epochs=1, default_root_dir="ckpt")
+trainer = pl.Trainer(accelerator="gpu", precision=32, callbacks=[logger], devices=[1], max_epochs=200, default_root_dir="ckpt")
 # Train!
 trainer.fit(model, dataloader)
 
