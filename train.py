@@ -8,7 +8,7 @@ import argparse
 # Configs
 resume_path = 'models/v1-5-pruned_controlnet.ckpt'
 batch_size = 4
-logger_freq = 300
+logger_freq = 2
 learning_rate = 1e-5
 sd_locked = True
 only_mid_control = False
@@ -28,7 +28,7 @@ print(len(dataset))
 dataloader = DataLoader(dataset, num_workers=0, batch_size=batch_size, shuffle=True)
 print(len(dataloader))
 logger = ImageLogger(batch_frequency=logger_freq)
-trainer = pl.Trainer(accelerator="gpu", precision=32, callbacks=[logger], devices=[1])
+trainer = pl.Trainer(accelerator="gpu", precision=32, callbacks=[logger], devices=[1], max_epochs=3, default_root_dir="ckpt")
 
 
 # Train!
