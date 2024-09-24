@@ -574,7 +574,6 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         wlabel_X = wlbl[:-1]
         ids_X = ids[:-1]
         wlabel_nxt = wlabel_nxt[0][0]
-        print(wlabel_nxt)
 
         if self.len_seq == 1:
             return dict(jpg = images_nxt.squeeze(0), txt = wlabel_nxt, hint = images_X.squeeze(0))
