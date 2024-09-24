@@ -16,6 +16,7 @@ from torchvision import transforms
 import joblib
 import json
 import cv2
+from transformers import AutoTokenizer
 
 
 # def download_image(url, file_path, file_name=""):
@@ -79,6 +80,8 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         #     # np.array
         # ])
         self.transform = torch.nn.Identity()
+
+        self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
 
         predefined_classes = ["Sunny/Clear", "Cloudy/Overcast", "Rainy", "Snowy", "Foggy/Misty", "Windy",
                               "Stormy/Severe", "Hot/Heatwave", "Cold/Cold Wave", "Mixed/Variable"]
@@ -570,7 +573,7 @@ class ImageNetVidDataset(torch.utils.data.Dataset):
         weather_X = w[:-1]
         wlabel_X = wlbl[:-1]
         ids_X = ids[:-1]
-        wlabel_nxt = wlabel_nxt[0]
+        wlabel_nxt = wlabel_nxt[0][0]
         print(wlabel_nxt)
 
         if self.len_seq == 1:
