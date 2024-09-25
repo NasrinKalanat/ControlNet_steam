@@ -39,10 +39,11 @@ class DatasetEval(object):
         img_gt_path = os.path.join(self.imgs_gt_path, self.imgs_gt[idx])
         img_gen_path = os.path.join(self.imgs_gen_path, self.imgs_gen[idx])
         lbl = self.labels[idx]
-
+        print("*********")
         for i in range(4):
             img_gt = self.split_img(img_gt_path, l, i)
-            img_gt.save(f"test_{idx}_{i}.png")
+            img_gt.save(f"/data/nak168/spatial_temporal/stream_img/ControlNet_steam/ckpt_test/image_log/test_{idx}_{i}.png")
+        print("&&&&&&&&&&&")
         exit()
         img_gt = self.transform(img_gt)
         img_gen = self.split_img(img_gen_path, l, i)
