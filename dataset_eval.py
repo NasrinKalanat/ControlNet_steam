@@ -16,9 +16,8 @@ class DatasetEval(object):
         self.imgs_gen = {}
         self.labels = {}
         self.ids = []
-        for file in glob.glob(f"{imgs_gt_path}/*.png"):
+        for file in glob.glob(f"{imgs_gt_path}/*.*"):
             file = os.path.basename(file)
-            print(file)
             _, idx = file.split(".png")[0].split("_gs-")
             if file.startswith("control"):
                 self.imgs_gt[idx]=file
@@ -29,7 +28,6 @@ class DatasetEval(object):
                     self.ids.append((idx,len(self.labels[idx]), i))
             if file.startswith("samples"):
                 self.imgs_gen[idx]=file
-        print(len(self.ids))
 
     def split_img(self, img_gt_path, l, i):
         img = Image.open(img_gt_path)
