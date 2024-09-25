@@ -26,9 +26,9 @@ class DatasetEval(object):
                 with open(f"{imgs_gen_path}/{file}", "r") as f:
                     self.labels[idx]=json.load(f)
                 for i in range(len(self.labels[idx])):
-                    _, idx = file.split(".png")[0].split("_gs-")
                     self.ids.append((idx,len(self.labels[idx]), i))
             if file.startswith("samples"):
+                _, idx = file.split(".png")[0].split("_gs-")
                 self.imgs_gen[idx]=file
 
     def split_img(self, img_gt_path, l, i):
