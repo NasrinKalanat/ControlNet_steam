@@ -50,4 +50,4 @@ class DatasetEval(object):
         return img_gt, img_gen, lbl
 
     def __len__(self):
-        return len(self.labels)
+        return len(self.ids)
