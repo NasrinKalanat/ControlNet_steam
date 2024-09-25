@@ -18,13 +18,15 @@ class DatasetEval(object):
         self.ids = []
         for file in glob.glob(f"{imgs_gt_path}/*.*"):
             file = os.path.basename(file)
-            _, idx = file.split(".png")[0].split("_gs-")
             if file.startswith("control"):
+                _, idx = file.split(".png")[0].split("_gs-")
                 self.imgs_gt[idx]=file
             if file.startswith("label"):
+                _, idx = file.split(".json")[0].split("_gs-")
                 with open(f"{imgs_gen_path}/{file}", "r") as f:
                     self.labels[idx]=json.load(f)
                 for i in range(len(self.labels[idx])):
+                    _, idx = file.split(".png")[0].split("_gs-")
                     self.ids.append((idx,len(self.labels[idx]), i))
             if file.startswith("samples"):
                 self.imgs_gen[idx]=file
