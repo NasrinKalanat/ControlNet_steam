@@ -40,7 +40,7 @@ class DatasetEval(object):
         idx, l, i = self.ids[id]
         img_gt_path = os.path.join(self.imgs_gt_path, self.imgs_gt[idx])
         img_gen_path = os.path.join(self.imgs_gen_path, self.imgs_gen[idx])
-        lbl = self.labels[idx]
+        lbl = self.labels[idx][i]
 
         img_gt = self.split_img(img_gt_path, l, i)
         img_gt = self.transform(img_gt)
