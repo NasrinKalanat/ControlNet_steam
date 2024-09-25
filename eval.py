@@ -242,5 +242,5 @@ class ThirdStageModel(nn.Module):
 
 if __name__ == '__main__':
     model = ThirdStageModel()
-    model.run(imgs_gt_path='/data/nak168/spatial_temporal/stream_img/BLIP_Diffusion_stream/images', imgs_gen_path='/data/nak168/spatial_temporal/stream_img/BLIP_Diffusion_stream/output')
+    model.run(imgs_gt_path='/data/nak168/spatial_temporal/stream_img/ControlNet_steam/ckpt_test/image_log/train', imgs_gen_path='/data/nak168/spatial_temporal/stream_img/ControlNet_steam/ckpt_test/image_log/train')
 
