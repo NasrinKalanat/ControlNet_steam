@@ -27,7 +27,6 @@ class DatasetEval(object):
                 for i in range(len(self.labels[idx])):
                     self.ids.append((idx,len(self.labels[idx]), i))
             if file.startswith("samples"):
-                _, idx = file.split(".png")[0].split("_")
                 self.imgs_gen[idx]=file
 
     def split_img(self, img_gt_path, l, i):
