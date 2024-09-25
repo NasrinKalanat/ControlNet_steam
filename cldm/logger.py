@@ -65,6 +65,12 @@ class ImageLogger(Callback):
             self.log_local(pl_module.logger.save_dir, split, images,
                            pl_module.global_step, pl_module.current_epoch, batch_idx)
 
+            if pl_module.model.conditioning_key is not None:
+                if hasattr(pl_module, "cond_stage_key") and pl_module.cond_stage_key in ["caption", "txt"]:
+                    filename = "labels_gs-{:06}_e-{:06}_b-{:06}.pt".format(pl_module.global_step, pl_module.current_epoch, batch_idx)
+                    path = os.path.join(pl_module.logger.save_dir, "image_log", split, filename)
+                    batch[pl_module.cond_stage_key].save(path)
+
             if is_train:
                 pl_module.train()
 
