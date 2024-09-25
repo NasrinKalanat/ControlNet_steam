@@ -44,7 +44,6 @@ class DatasetEval(object):
             img_gt = self.split_img(img_gt_path, l, i)
             img_gt.save(f"/data/nak168/spatial_temporal/stream_img/ControlNet_steam/ckpt_test/image_log/test_{idx}_{i}.png")
         print("&&&&&&&&&&&")
-        exit()
         img_gt = self.transform(img_gt)
         img_gen = self.split_img(img_gen_path, l, i)
         img_gen = self.transform(img_gen)
